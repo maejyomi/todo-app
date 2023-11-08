@@ -3,7 +3,7 @@ import TodoMain from './components/TodoMain';
 
 function App() {
   return (
-    <div>
+    <div className='flex bg-gray-200 h-screen'>
       <TodoMain />
     </div>
   );
