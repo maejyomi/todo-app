@@ -8,7 +8,7 @@ const TodoMain = () => {
     const [id, setId] = useState(0);
     const [todos, setTodos] = useState([]);
 
-    const handleAdd = (e) => {
+    const addTodo = (e) => {
         console.log(content.current.value);
         
         const todo = {
@@ -23,9 +23,21 @@ const TodoMain = () => {
 
     const deleteTodo = (targetId) => {
         console.log(targetId);
-        setTodos(()=>{
-            return todos.filter((item)=>item.id != targetId);
-        })
+        setTodos(todos.filter((item)=>item.id != targetId));
+    }
+
+    const updateTodo = (targetId, updateContent) => {
+        console.log(targetId, updateContent);
+        setTodos(todos.map(item => {
+            if(item.id == targetId){
+                return {
+                    ...item,
+                    content : updateContent
+                }
+            }
+            return item
+        }));
+
     }
 
     return (
@@ -37,11 +49,11 @@ const TodoMain = () => {
             <div className="flex items-center justify-center p-1 mb-8">
                 <input ref={content} type="text" name="contentText" placeholder="오늘의 할 일은?" 
                     className="rounded-lg border-solid border-gray-300 w-5/6 mr-2 focus:border-blue-300 focus:ring-blue-300" />
-                <button onClick={handleAdd}>
+                <button onClick={addTodo}>
                     <BiSolidMessageSquareAdd className="text-5xl text-blue-300 hover:text-blue-500" />
                 </button>
             </div>
-            <TodoItemList todos={todos} deleteTodo={deleteTodo}/>
+            <TodoItemList todos={todos} deleteTodo={deleteTodo} updateTodo={updateTodo}/>
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import TodoItem from "./TodoItem"
 
-const TodoItemList = ({ todos, deleteTodo }) => {
+const TodoItemList = ({ todos, deleteTodo, updateTodo }) => {
     todos.map((item) => console.log(item.content));
 
     return (
@@ -9,7 +9,11 @@ const TodoItemList = ({ todos, deleteTodo }) => {
             <hr />
             <div className="mt-4">
                 {
-                    todos.map((item) => <TodoItem todo={item} key={item.id} deleteTodo={deleteTodo}/>)
+                    todos.map((item) => <TodoItem 
+                                            todo={item} 
+                                            key={item.id} 
+                                            deleteTodo={deleteTodo} 
+                                            updateTodo={updateTodo}/>)
                 }
             </div>
         </div>
