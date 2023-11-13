@@ -3,7 +3,7 @@ import { FiEdit2 } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BsCheckLg } from "react-icons/bs";
 
-const TodoItem = ({ todo }) => {
+const TodoItem = ({ todo, deleteTodo }) => {
   const [check, setCheck] = useState(false);
   const [edit, setEdit] = useState(false);
   const handleCheck= (e) => {
@@ -18,6 +18,10 @@ const TodoItem = ({ todo }) => {
   const submitEdit = () => {
     console.log("편집 완료");
     setEdit(false);
+  }
+
+  const handleDelete = () => {
+    deleteTodo(todo.id);
   }
 
   useEffect(()=>{
@@ -50,7 +54,7 @@ const TodoItem = ({ todo }) => {
           check
           ?<div>
               <button onClick={handleEdit} disabled className="text-xl mr-2 text-gray-200"><FiEdit2 /></button>
-              <button className="text-xl text-gray-400 hover:text-red-600"><RiDeleteBin6Line /></button>
+              <button onClick={handleDelete} className="text-xl text-gray-400 hover:text-red-600"><RiDeleteBin6Line /></button>
             </div>
           : edit
           ?
@@ -58,7 +62,7 @@ const TodoItem = ({ todo }) => {
           :
             <div>
               <button onClick={handleEdit} className="text-xl mr-2 text-gray-400 hover:text-blue-500"><FiEdit2 /></button>
-              <button className="text-xl text-gray-400 hover:text-red-600"><RiDeleteBin6Line /></button>
+              <button onClick={handleDelete} className="text-xl text-gray-400 hover:text-red-600"><RiDeleteBin6Line /></button>
             </div>
         }
         

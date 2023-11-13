@@ -21,6 +21,13 @@ const TodoMain = () => {
         content.current.value="";
     }
 
+    const deleteTodo = (targetId) => {
+        console.log(targetId);
+        setTodos(()=>{
+            return todos.filter((item)=>item.id != targetId);
+        })
+    }
+
     return (
         <div className="rounded-lg bg-white shadow-xl w-[512px] h-[650px] m-auto p-8">
             <div className="flex justify-between mb-6 text-xl">
@@ -34,7 +41,7 @@ const TodoMain = () => {
                     <BiSolidMessageSquareAdd className="text-5xl text-blue-300 hover:text-blue-500" />
                 </button>
             </div>
-            <TodoItemList todos={todos} />
+            <TodoItemList todos={todos} deleteTodo={deleteTodo}/>
         </div>
     )
 }
